@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>RETARD gameDEV</title>
+<meta charset='utf-8' />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<style>
+#blya_budet_canvas{
+	background: url('bgr.gif') no-repeat center ;
+}
+</style>
+<canvas id="blya_budet_canvas" width="400px" height="360px">
+</canvas>
+<img src="rage.png" id="rage" style="display: none">
+<script>
+var c = document.getElementById("blya_budet_canvas");
+var ctx = c.getContext("2d");
+var rage = document.getElementById("rage");
+var y = 150;
+var audio = new Audio('RAGE.mp3');
+ctx.drawImage(rage, 0, y, 160, 100);
+function Redraw(up, down){
+	if(down == 1){
+		y+=2;
+	}else{
+		y-=2;
+	}
+	ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+	ctx.drawImage(rage, 0, y, 160, 100);
+}
+var keys = {};
+$(document).keydown(function(e, i){
+	if(e.which == 38 && y > 0){
+		Redraw(1, 0);
+	}
+	if(e.which == 39){
+		console.log("ETO BUDET ULTA");
+	}
+	if(e.which == 40 && y < 260){
+		Redraw(0, 1);
+		audio.play();
+	}
+	keys[e.which] = true;
+});
+$(document).keyup(function (e) {
+	delete keys[e.which];
+});
+$(document).ready(function(){
+	$("#blya_budet_canvas").on("click", function(e){
+		console.log(e.pageX - Math.floor($('#blya_budet_canvas').offset().left + 8), e.clientY - Math.floor($('#blya_budet_canvas').offset().top + 8));
+	});
+});
+</script>
+</body>
+</html>
