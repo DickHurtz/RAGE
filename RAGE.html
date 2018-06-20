@@ -88,7 +88,7 @@ function WEAKLINGS(x, yy, play){
 	var MOVE = setInterval(function(){
 		ctx.clearRect(x, yy, 40, 40);
 		x--;
-		if((x < 170 && yy < y + 100 && yy > y) || (x < 380 && yy < fist_y + 70 && yy > fist_y)){
+		if(x < 170 && yy < y + 100 && yy > y){
 			ctx.clearRect(x, yy, 20, 20);
 			if($("#ultimate_RAGE").hasClass("RAGE")){
 				punch.play();
