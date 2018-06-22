@@ -116,7 +116,6 @@ function RAGE(){
 		var MOVE = setInterval(function(){
 			ctx.clearRect(x, yy, 80, 40);
 			x-=2;
-			console.log(fist_y);
 			if((x < 170 && yy < y + 100 && yy > y)||(yy < fist_y + 70 && yy > fist_y)){
 				ctx.clearRect(x, yy, 80, 40);
 				if($("#ultimate_RAGE").hasClass("RAGE")){
