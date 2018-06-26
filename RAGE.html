@@ -127,14 +127,14 @@ function RAGE(){
 					fuck.play();
 				}
 				BLOOD++;
-				if(BLOOD > 10 && !$("#ultimate_RAGE").hasClass("RAGE")){
+				if(BLOOD > 5 && !$("#ultimate_RAGE").hasClass("RAGE")){
 					if(!ANGRY){
 						alert("YOU THOUGHT TO AVOID ANGER!??!?!?!?!?!?!");
 						ANGRY = true;
 						$("#ultimate_RAGE").trigger("click");
 					}
 				}
-				if(BLOOD == 100){
+				if(BLOOD == 50){
 					$("#blya_budet_canvas").replaceWith("<img src='GG.gif' width='400px' height='360px'>");
 					GGS.loop = true;
 					GGS.play();
