@@ -164,11 +164,11 @@ function RAGE(){
 	var SPAWN = setInterval(function(){WEAKLINGS(400, Math.floor(Math.random() * (260 - 60) + 60), Math.floor(Math.random() * 2) + 1)}, 1000);
 	function Redraw(up, down){
 		if(down == 1){
-			y+=2;
+			y+=4;
 		}else{
-			y-=2;
+			y-=4;
 		}
-		ctx.clearRect(0, y-2, 160, 100);
+		ctx.clearRect(0, y-4, 160, 100);
 		ctx.drawImage(rage, 0, y, 160, 100);
 	}
 	function FUCKING_FLY(fist_x){
