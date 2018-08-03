@@ -139,21 +139,18 @@ var RAGE = function(){
 	var fuck_fist = new Audio('FOCKING_FIST.mp3');
 	var fuck = new Audio('FUCK_YOU.mp3');
 	var punch = new Audio('PUNCH.mp3');
-	ctx.drawImage(rage, 0, y, 160, 100);
 	ctx.font = "16px Arial";
 	ctx.fillText(BLOOD,200,16);
 	function WEAKLINGS(x, yy, play){
-		ctx.drawImage(scumbag, x, yy, 40, 40);
 		if($("#ultimate_RAGE").hasClass("RAGE")){
 			speed = 1000/100; // TRUE ANGER
 		}else{
 			speed = 1000/50; //normie
 		}
 		var MOVE = setInterval(function(){
-			ctx.clearRect(x, yy, 80, 40);
+			ctx.drawImage(scumbag, x-2, yy, 80, 40);
 			x-=2;
 			if((x < 170 && yy < y + 100 && yy > y)||(yy < fist_y + 70 && yy > fist_y)){
-				ctx.clearRect(x, yy, 80, 40);
 				if($("#ultimate_RAGE").hasClass("RAGE")){
 					punch.play();
 				}
@@ -177,8 +174,6 @@ var RAGE = function(){
 					clearInterval(SPAWN, MOVE);
 					ctx.clearRect(0, 0, 400, 360);
 				}
-				ctx.clearRect(200, 0, 80, 40);
-				ctx.fillText(BLOOD,200,16);
 				x = -80;
 				clearInterval(MOVE);
 			}
@@ -194,7 +189,6 @@ var RAGE = function(){
 					ctx.clearRect(0, 0, 400, 360);
 				}
 			}
-			ctx.drawImage(scumbag, x-2, yy, 80, 40);
 		}, speed);
 	}
 	var SPAWN = setInterval(function(){WEAKLINGS(400, Math.floor(Math.random() * (260 - 60) + 60), Math.floor(Math.random() * 2) + 1)}, 1000);
@@ -204,13 +198,10 @@ var RAGE = function(){
 		}else{
 			y-=4;
 		}
-		ctx.clearRect(0, y, 160, 100);
-		ctx.drawImage(rage, 0, y, 160, 100);
 	}
 	function FUCKING_FLY(fist_x){
 		var MOVE = setInterval(function(){
 			fist_x+=10;
-			ctx.clearRect(fist_x - 10, fist_y + 10, 36, 70);
 			ctx.drawImage(fist, fist_x, fist_y + 10, 30, 70);
 			if(fist_x > 390){
 				fist_x = 400;
@@ -251,6 +242,11 @@ var RAGE = function(){
 	$(document).keyup(function (e) {
 		delete keys[e.which];
 	});
+	setInterval(function(){
+		ctx.clearRect(0, 0, 400, 360);
+		ctx.drawImage(rage, 0, y, 160, 100);
+		ctx.fillText(BLOOD,200,16);
+	}, 60);
 	$(document).ready(function(){
 		$("#QUITMETR").css("opacity","0");
 		$("#ultimate_RAGE").on("click", function(e){
