@@ -256,10 +256,10 @@ var RAGE = function(){
 		$("#ultimate_RAGE").on("click", function(e){
 			ULTIMATE_RAGE();
 		});
-		$(".up").hover(function(e){
+		$(".up").on("click", function(e){
 			setInterval(Redraw(1, 0), 60);
 		});
-		$(".down").hover(function(e){
+		$(".down").on("click", function(e){
 			setInterval(Redraw(0, 1), 60);
 		});
 		$(".rage").on("click", function(e){
