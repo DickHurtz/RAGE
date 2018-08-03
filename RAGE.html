@@ -3,11 +3,17 @@
 <head>
 <title>RETARD gameDEV</title>
 <meta charset='utf-8' />
+<meta name="viewport" content="width=device-width, initial-scale=0.7">
+<meta name="description" content="GameDev in state of ultimate RAGE!">
+<meta name="keywords" content="HTML,CSS,RAGE,JavaScript,GameDev">
 <link href="RAGE.ico" rel="icon" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 <style>
+body{
+margin: 0;
+}
 #blya_budet_canvas{
 	background: url('bgr.gif') no-repeat center;
 	z-index: -1;
@@ -42,6 +48,7 @@
 }
 .RAGE_holder{
 	position: relative;
+	height: 360px;
 }
 #blya_budet_canvas, .RAGE_mode, .RAGE_holder img{
 	position: absolute;
@@ -54,9 +61,8 @@
 	width: 80px;
 	height: 80px;
 	position: absolute;
-	top:0;
+	top:30%;
 	left:0;
-	bottom:0;
 	margin: auto;
 }
 .GG{
@@ -69,6 +75,28 @@ p{
 	text-align: center;
 	top: 360px;
 	left: 0;
+	right: 0;
+}
+.controls{
+	z-index: 100;
+	position: absolute;
+	width: 60px;
+	padding: 5px;
+	background: red;
+	color: white;
+	font-size: 12px;
+	text-align: center;
+	bottom: 5px;
+	margin: auto;
+}
+.controls.up{
+	left: 0px;
+}
+.controls.down{
+	left: 60px;
+	bottom: -30px;
+}
+.controls.rage{
 	right: 0;
 }
 </style>
@@ -84,7 +112,14 @@ p{
 <img src="rage.png" id="rage" style="display: none">
 <img src="newscum.png" id="scumbag" style="display: none">
 <script>
-function RAGE(){
+if($(document).width() < 600){
+	$(".RAGE_holder").append(["<button class='controls up'>UP!</button>", 
+							  "<button class='controls down'>DOWN!</button>", 
+							  "<button class='controls rage'>RAGE!</button>"
+	]);
+	$("canvas + p").css("margin-top","60px")
+}
+var RAGE = function(){
 	var c = document.getElementById("blya_budet_canvas");
 	var ctx = c.getContext("2d");
 	var rage = document.getElementById("rage");
@@ -163,7 +198,7 @@ function RAGE(){
 		}, speed);
 	}
 	var SPAWN = setInterval(function(){WEAKLINGS(400, Math.floor(Math.random() * (260 - 60) + 60), Math.floor(Math.random() * 2) + 1)}, 1000);
-	function Redraw(up, down){
+	var Redraw = function(up, down){
 		if(down == 1){
 			y+=4;
 		}else{
@@ -184,7 +219,7 @@ function RAGE(){
 			};
 		}, 50);
 	}
-	function ULTIMATE_RAGE(){
+	var ULTIMATE_RAGE = function(){
 		$("#ultimate_RAGE").toggleClass("RAGE");
 		$(".RAGE_mode, .rage_bgr").toggle();
 		audio.play();
@@ -220,6 +255,23 @@ function RAGE(){
 		$("#QUITMETR").css("opacity","0");
 		$("#ultimate_RAGE").on("click", function(e){
 			ULTIMATE_RAGE();
+		});
+		$(".up").on("click", function(e){
+			Redraw(1, 0);
+		});
+		$(".down").on("click", function(e){
+			Redraw(0, 1);
+		});
+		$(".rage").on("click", function(e){
+			if(BLOOD > 1){
+				fist_y = y;
+				ctx.drawImage(fist, 160, fist_y + 10, 30, 70);
+				FUCKING_FLY(160);
+				fuck_fist.play();
+				BLOOD--;
+				ctx.clearRect(200, 0, 40, 40);
+				ctx.fillText(BLOOD,200,16);
+			}
 		});
 	});
 }
