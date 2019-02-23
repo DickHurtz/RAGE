@@ -207,19 +207,6 @@ var RAGE = function(){
 		ctx.clearRect(0, y, 160, 100);
 		ctx.drawImage(rage, 0, y, 160, 100);
 	}
-	var RedrawMob = function(up, down){
-		if(down == 1){
-			for(i = 0; i < 10; i++){
-				setTimeout(function(){y+=4;},1000);
-			}
-		}else{
-			for(i = 0; i < 10; i++){
-				setTimeout(function(){y-=4;},1000);
-			}
-		}
-		ctx.clearRect(0, y, 160, 100);
-		ctx.drawImage(rage, 0, y, 160, 100);
-	}
 	function FUCKING_FLY(fist_x){
 		var MOVE = setInterval(function(){
 			fist_x+=10;
@@ -252,15 +239,18 @@ var RAGE = function(){
 			    touchendY = event.changedTouches[0].screenY;
 			    handleGesture();
 			}, false); 
-
+			
+			var RedrawMob = function(up, down){
+				var diff = touchstartY - touchendY;
+				if(down == 1){
+					y+=4 + diff;
+				}else{
+					y-=4 - diff;
+				}
+				ctx.clearRect(0, y, 160, 100);
+				ctx.drawImage(rage, 0, y, 160, 100);
+			}
 			function handleGesture() {
-			    if (touchendX < touchstartX) {
-				console.log('Swiped left');
-			    }
-
-			    if (touchendX > touchstartX) {
-				console.log('Swiped right');
-			    }
 
 			    if (touchendY < touchstartY) {
 				RedrawMob(1, 0);
@@ -311,47 +301,6 @@ var RAGE = function(){
 		delete keys[e.which];
 	});
 	$(document).ready(function(){
-		
-// 			let touchstartX = 0;
-// 			let touchstartY = 0;
-// 			let touchendX = 0;
-// 			let touchendY = 0;
-
-// 			const gestureZone = document.getElementById('blya_budet_canvas');
-
-// 			gestureZone.addEventListener('touchstart', function(event) {
-// 			    touchstartX = event.changedTouches[0].screenX;
-// 			    touchstartY = event.changedTouches[0].screenY;
-// 			}, false);
-
-// 			gestureZone.addEventListener('touchend', function(event) {
-// 			    touchendX = event.changedTouches[0].screenX;
-// 			    touchendY = event.changedTouches[0].screenY;
-// 			    handleGesture();
-// 			}, false); 
-
-// 			function handleGesture() {
-// 			    if (touchendX < touchstartX) {
-// 				console.log('Swiped left');
-// 			    }
-
-// 			    if (touchendX > touchstartX) {
-// 				console.log('Swiped right');
-// 			    }
-
-// 			    if (touchendY < touchstartY) {
-// 				console.log('Swiped up');
-// 			    }
-
-// 			    if (touchendY > touchstartY) {
-// 			       console.log('Swiped down');
-// 			    }
-
-// 			    if (touchendY === touchstartY) {
-// 			       console.log('Tap');
-// 			    }
-// 			}
-		
 		
 		$("#QUITMETR").css("opacity","0");
 		$("#ultimate_RAGE").on("click", function(e){
