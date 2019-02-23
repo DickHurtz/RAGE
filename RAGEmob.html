@@ -242,13 +242,9 @@ var RAGE = function(){
 			var RedrawM = function(up, down){
 				var i = 0;
 				if(down == 1){
-					while (i < touchendY) {
 					setTimeout(function(){y+=4;},1000);
-					}
 				}else{
-					while (i > touchendY) {
 					y-=4;
-					}
 				}
 				ctx.clearRect(0, y, 160, 100);
 				ctx.drawImage(rage, 0, y, 160, 100);
