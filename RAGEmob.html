@@ -114,8 +114,8 @@ p{
 <script>
 if($(document).width() < 600){
 	$(".RAGE_holder").append(["<button class='controls up'>UP!</button>", 
-							  "<button class='controls down'>DOWN!</button>", 
-							  "<button class='controls rage'>RAGE!</button>"
+	  "<button class='controls down'>DOWN!</button>", 
+	  "<button class='controls rage'>RAGE!</button>"
 	]);
 	$("canvas + p").css("margin-top","60px")
 }
@@ -210,11 +210,11 @@ var RAGE = function(){
 	var RedrawMob = function(up, down){
 		if(down == 1){
 			for(i = 0; i < 10; i++){
-				y+=4;
+				setTimeout(function(){y+=4;},1000);
 			}
 		}else{
 			for(i = 0; i < 10; i++){
-				y-=4;
+				setTimeout(function(){y-=4;},1000);
 			}
 		}
 		ctx.clearRect(0, y, 160, 100);
