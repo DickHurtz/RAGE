@@ -250,11 +250,11 @@ var RAGE = function(){
 			    }
 
 			    if (touchendY < touchstartY) {
-				Redraw(1, 0);
+				setInterval(Redraw(1, 0), 1000);
 			    }
 
 			    if (touchendY > touchstartY) {
-			       Redraw(0, 1);
+			       setInterval(Redraw(0, 1), 1000);
 			    }
 
 			    if (touchendY === touchstartY) {
