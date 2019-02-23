@@ -232,33 +232,35 @@ var RAGE = function(){
 
 			var gesuredZone = document.getElementById('blya_budet_canvas');
 
-			gesuredZone.addEventListener('touchstart', function(event) {
+			gesuredZone.addEventListener('touchstart', function(e) {
 			    touchstartX = e.changedTouches[0].screenX;
 			    touchstartY = e.changedTouches[0].screenY;
+				console.log("asdasd");
 			}, false);
 
-			gesuredZone.addEventListener('touchend', function(event) {
+			gesuredZone.addEventListener('touchend', function(e) {
 			    touchendX = event.screenX;
 			    touchendY = event.screenY;
 			    handleGesure();
+				console.log("dsadsa");
 			}, false); 
 
 			function handleGesure() {
 			    var swiped = 'swiped: ';
 			    if (touchendX < touchstartX) {
-				alert(swiped + 'left!');
+				console.log(swiped + 'left!');
 			    }
 			    if (touchendX > touchstartX) {
-				alert(swiped + 'right!');
+				console.log(swiped + 'right!');
 			    }
 			    if (touchendY < touchstartY) {
-				alert(swiped + 'down!');
+				console.log(swiped + 'down!');
 			    }
 			    if (touchendY > touchstartY) {
-				alert(swiped + 'left!');
+				console.log(swiped + 'left!');
 			    }
 			    if (touchendY == touchstartY) {
-				alert('tap!');
+				console.log('tap!');
 			    }
 			}
 	
