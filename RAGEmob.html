@@ -239,7 +239,7 @@ var RAGE = function(){
 			    touchendY = event.changedTouches[0].screenY;
 			    handleGesture();
 			}, false); 
-			var Redraw = function(up, down){
+			var RedrawM = function(up, down){
 				var i = 0;
 				if(down == 1){
 					while (i < touchendY) {
@@ -256,11 +256,11 @@ var RAGE = function(){
 			function handleGesture() {
 
 			    if (touchendY < touchstartY) {
-				Redraw(1, 0);
+				RedrawM(1, 0);
 			    }
 
 			    if (touchendY > touchstartY) {
-			       Redraw(0, 1);
+			       RedrawM(0, 1);
 			    }
 
 			    if (touchendY === touchstartY) {
