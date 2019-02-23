@@ -207,6 +207,19 @@ var RAGE = function(){
 		ctx.clearRect(0, y, 160, 100);
 		ctx.drawImage(rage, 0, y, 160, 100);
 	}
+	var RedrawMob = function(up, down){
+		if(down == 1){
+			for(i = 0; i < 10; i++){
+				y+=4;
+			}
+		}else{
+			for(i = 0; i < 10; i++){
+				y-=4;
+			}
+		}
+		ctx.clearRect(0, y, 160, 100);
+		ctx.drawImage(rage, 0, y, 160, 100);
+	}
 	function FUCKING_FLY(fist_x){
 		var MOVE = setInterval(function(){
 			fist_x+=10;
@@ -250,11 +263,11 @@ var RAGE = function(){
 			    }
 
 			    if (touchendY < touchstartY) {
-				setInterval(Redraw(1, 0), 1000);
+				RedrawMob(1, 0);
 			    }
 
 			    if (touchendY > touchstartY) {
-			       setInterval(Redraw(0, 1), 1000);
+			       RedrawMob(0, 1);
 			    }
 
 			    if (touchendY === touchstartY) {
