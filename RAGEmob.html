@@ -229,14 +229,12 @@ var RAGE = function(){
 			let touchendX = 0;
 			let touchendY = 0;
 
-			const gestureZone = document.getElementById('blya_budet_canvas');
-
-			gestureZone.addEventListener('touchstart', function(event) {
+			c.addEventListener('touchstart', function(event) {
 			    touchstartX = event.changedTouches[0].screenX;
 			    touchstartY = event.changedTouches[0].screenY;
 			}, false);
 
-			gestureZone.addEventListener('touchend', function(event) {
+			c.addEventListener('touchend', function(event) {
 			    touchendX = event.changedTouches[0].screenX;
 			    touchendY = event.changedTouches[0].screenY;
 			    handleGesture();
