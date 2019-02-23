@@ -250,15 +250,24 @@ var RAGE = function(){
 			    }
 
 			    if (touchendY < touchstartY) {
-				console.log('Swiped up');
+				Redraw(1, 0);
 			    }
 
 			    if (touchendY > touchstartY) {
-			       console.log('Swiped down');
+			       Redraw(0, 1);
 			    }
 
 			    if (touchendY === touchstartY) {
-			       console.log('Tap');
+			       console.log('Tap');  
+				if(BLOOD > 1){
+					fist_y = y;
+					ctx.drawImage(fist, 160, fist_y + 10, 30, 70);
+					FUCKING_FLY(160);
+					fuck_fist.play();
+					BLOOD--;
+					ctx.clearRect(200, 0, 40, 40);
+					ctx.fillText(BLOOD,200,16);
+				}
 			    }
 			}
 	var keys = {};
