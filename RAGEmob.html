@@ -224,46 +224,6 @@ var RAGE = function(){
 		$(".RAGE_mode, .rage_bgr").toggle();
 		audio.play();
 	};
-	
-			var touchstartX = 0;
-			var touchstartY = 0;
-			var touchendX = 0;
-			var touchendY = 0;
-
-			var gesuredZone = document.getElementById('blya_budet_canvas');
-
-			gesuredZone.addEventListener('touchstart', function(e) {
-			    touchstartX = e.changedTouches[0].screenX;
-			    touchstartY = e.changedTouches[0].screenY;
-				console.log("asdasd");
-			}, false);
-
-			gesuredZone.addEventListener('touchend', function(e) {
-			    touchendX = event.screenX;
-			    touchendY = event.screenY;
-			    handleGesure();
-				console.log("dsadsa");
-			}, false); 
-
-			function handleGesure() {
-			    var swiped = 'swiped: ';
-			    if (touchendX < touchstartX) {
-				console.log(swiped + 'left!');
-			    }
-			    if (touchendX > touchstartX) {
-				console.log(swiped + 'right!');
-			    }
-			    if (touchendY < touchstartY) {
-				console.log(swiped + 'down!');
-			    }
-			    if (touchendY > touchstartY) {
-				console.log(swiped + 'left!');
-			    }
-			    if (touchendY == touchstartY) {
-				console.log('tap!');
-			    }
-			}
-	
 	var keys = {};
 	$(document).keydown(function(e, i){
 		if(e.which == 38 && y > 0){
@@ -292,6 +252,94 @@ var RAGE = function(){
 		delete keys[e.which];
 	});
 	$(document).ready(function(){
+		
+// 			var touchstartX = 0;
+// 			var touchstartY = 0;
+// 			var touchendX = 0;
+// 			var touchendY = 0;
+
+// 			var gesuredZone = document.getElementById('blya_budet_canvas');
+
+// 			gesuredZone.addEventListener('touchstart', function(e) {
+// 			    touchstartX = e.changedTouches[0].screenX;
+// 			    touchstartY = e.changedTouches[0].screenY;
+// 				console.log("asdasd");
+// 			}, false);
+
+// 			gesuredZone.addEventListener('touchend', function(e) {
+// 			    touchendX = event.screenX;
+// 			    touchendY = event.screenY;
+// 			    handleGesure();
+// 				console.log("dsadsa");
+// 			}, false); 
+
+// 			function handleGesure() {
+// 			    var swiped = 'swiped: ';
+// 			    if (touchendX < touchstartX) {
+// 				console.log(swiped + 'left!');
+// 			    }
+// 			    if (touchendX > touchstartX) {
+// 				console.log(swiped + 'right!');
+// 			    }
+// 			    if (touchendY < touchstartY) {
+// 				console.log(swiped + 'down!');
+// 			    }
+// 			    if (touchendY > touchstartY) {
+// 				console.log(swiped + 'left!');
+// 			    }
+// 			    if (touchendY == touchstartY) {
+// 				console.log('tap!');
+// 			    }
+// 			}
+		
+		
+			let pageWidth = window.innerWidth || document.body.clientWidth;
+			let treshold = Math.max(1,Math.floor(0.01 * (pageWidth)));
+			let touchstartX = 0;
+			let touchstartY = 0;
+			let touchendX = 0;
+			let touchendY = 0;
+
+			const limit = Math.tan(45 * 1.5 / 180 * Math.PI);
+			const gestureZone = document.getElementById('blya_budet_canvas');
+
+			gestureZone.addEventListener('touchstart', function(event) {
+			    touchstartX = event.changedTouches[0].screenX;
+			    touchstartY = event.changedTouches[0].screenY;
+			}, false);
+
+			gestureZone.addEventListener('touchend', function(event) {
+			    touchendX = event.changedTouches[0].screenX;
+			    touchendY = event.changedTouches[0].screenY;
+			    handleGesture(event);
+			}, false);
+
+			function handleGesture(e) {
+			    let x = touchendX - touchstartX;
+			    let y = touchendY - touchstartY;
+			    let xy = Math.abs(x / y);
+			    let yx = Math.abs(y / x);
+			    if (Math.abs(x) > treshold || Math.abs(y) > treshold) {
+				if (yx <= limit) {
+				    if (x < 0) {
+					console.log("left");
+				    } else {
+					console.log("right");
+				    }
+				}
+				if (xy <= limit) {
+				    if (y < 0) {
+					console.log("top");
+				    } else {
+					console.log("bottom");
+				    }
+				}
+			    } else {
+				console.log("tap");
+			    }
+			}
+		
+		
 		$("#QUITMETR").css("opacity","0");
 		$("#ultimate_RAGE").on("click", function(e){
 			ULTIMATE_RAGE();
