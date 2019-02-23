@@ -292,7 +292,7 @@ var RAGE = function(){
 // 			    }
 // 			}
 		
-		
+			console.log("1");
 			let pageWidth = window.innerWidth || document.body.clientWidth;
 			let treshold = Math.max(1,Math.floor(0.01 * (pageWidth)));
 			let touchstartX = 0;
@@ -306,12 +306,14 @@ var RAGE = function(){
 			gestureZone.addEventListener('touchstart', function(event) {
 			    touchstartX = event.changedTouches[0].screenX;
 			    touchstartY = event.changedTouches[0].screenY;
+				console.log("2");
 			}, false);
 
 			gestureZone.addEventListener('touchend', function(event) {
 			    touchendX = event.changedTouches[0].screenX;
 			    touchendY = event.changedTouches[0].screenY;
 			    handleGesture(event);
+				console.log("2");
 			}, false);
 
 			function handleGesture(e) {
